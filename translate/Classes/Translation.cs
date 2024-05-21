@@ -16,7 +16,7 @@ namespace translate.Classes
         {
             Dictionary<int, string> engWords = WithJson.ReadJsonFile(FIlePathEng);
             Dictionary<int, string> ruWords = WithJson.ReadJsonFile(FIlePathRu);
-            Dictionary<int, string> frWords = WithJson.ReadJsonFile(FIlePathRu);
+            Dictionary<int, string> frWords = WithJson.ReadJsonFile(FIlePathFr);
             Dictionary<int, string>[] languages = { engWords, ruWords, frWords };
 
             int index = 0;
@@ -38,13 +38,13 @@ namespace translate.Classes
                     }
                     else
                     {
-                        MessageBox.Show("Строка не найдена в JSON файле.");
+                        MessageBox.Show("Строка не найдена.");
                         return text;
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Ошибка при разборе JSON: " + ex.Message);
+                    MessageBox.Show("Ошибка при разборе файла: " + ex.Message);
                     return text;
                 }
             }

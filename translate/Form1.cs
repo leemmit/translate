@@ -79,6 +79,11 @@ namespace translate
         {
             tb_input.Text = Translation.Translate(tb_output.Text, cb_output.SelectedIndex, cb_input.SelectedIndex);
         }
+
+        private void cb_output_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tb_output.Text = Translation.Translate(tb_input.Text, cb_input.SelectedIndex, cb_output.SelectedIndex);
+        }
     }
 }
 

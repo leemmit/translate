@@ -84,6 +84,7 @@ namespace translate
             this.cb_output.Name = "cb_output";
             this.cb_output.Size = new System.Drawing.Size(185, 37);
             this.cb_output.TabIndex = 3;
+            this.cb_output.SelectionChangeCommitted += new System.EventHandler(this.cb_output_SelectedIndexChanged);
             // 
             // label1
             // 
