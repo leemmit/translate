@@ -31,12 +31,15 @@ namespace translate
         public static TextBox TextBoxOutput { get => _textBoxOutput; set => _textBoxOutput = value; }
 
 
-        static string filePathEng = @"H:\_Универ\4 семестр\Саакян\ОП\VS\translate\translate\JSON\eng_words.json";
-        static string filePathRu = @"H:\_Универ\4 семестр\Саакян\ОП\VS\translate\translate\JSON\russian_words.json";
-        static string filePathFr = @"H:\_Универ\4 семестр\Саакян\ОП\VS\translate\translate\JSON\fr_words.json";
+        static string filePathEng = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "JSON", "eng_words.json");
+        static string filePathRu = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "JSON", "russian_words.json");
+        static string filePathFr = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "JSON", "fr_words.json");
         public static string FIlePathEng { get => filePathEng; set => filePathEng = value; }
         public static string FIlePathRu { get => filePathRu; set => filePathRu = value; }
         public static string FIlePathFr { get => filePathFr; set => filePathFr = value; }
+
+        private static int _selectedInput;
+        public static int SelectedInput { get => _selectedInput; set => _selectedInput = value; }
 
 
         public Form1()
@@ -48,11 +51,6 @@ namespace translate
         private void btnTranslate_Click(object sender, EventArgs e)
         {
             TextBoxOutput.Text = Translation.Translate(tb_input.Text, cb_input.SelectedIndex, cb_output.SelectedIndex);
-
-            /*            foreach (var kvp in data)
-                        {
-                            tb_output.AppendText(kvp.Value + "\r\n");
-                        }*/
         }
 
         private void btn_addWord_Click(object sender, EventArgs e)
@@ -63,6 +61,8 @@ namespace translate
 
         void InitVariables()
         {
+            MaximizeBox = false;
+
             cb_input.SelectedIndex = 1;
             cb_output.SelectedIndex = 0;
             tb_output.ReadOnly = true;
@@ -73,6 +73,8 @@ namespace translate
             _comboBoxOutput = cb_output;
             _textBoxInput = tb_input;
             _textBoxOutput = tb_output;
+
+            SelectedInput = cb_input.SelectedIndex;
         }
 
         private void cb_input_SelectedIndexChanged(object sender, EventArgs e)

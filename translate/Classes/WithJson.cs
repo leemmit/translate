@@ -46,8 +46,6 @@ namespace translate.Classes
                 string updatedJson = JsonConvert.SerializeObject(data, Formatting.Indented);
 
                 File.WriteAllText(filePath, updatedJson, System.Text.Encoding.UTF8);
-
-                MessageBox.Show("Данные успешно сохранены в файл JSON.");
             }
             catch (Exception ex)
             {

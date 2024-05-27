@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using static translate.Form1;
+using translate.error_word;
 
 namespace translate.Classes
 {
@@ -38,20 +39,21 @@ namespace translate.Classes
                     }
                     else
                     {
-                        MessageBox.Show("Строка не найдена.");
-                        return text;
+                        FormErrorWord formErr = new FormErrorWord();
+                        formErr.Show();
+                        return text = "";
                     }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Ошибка при разборе файла: " + ex.Message);
-                    return text;
+                    return text = "";
                 }
             }
             else
             {
                 MessageBox.Show("Ошибка: Один или несколько файлов не найдено");
-                return text;
+                return text = "";
             }
         }
     }

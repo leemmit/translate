@@ -18,10 +18,22 @@ namespace translate.new_word
 {
     public partial class FormAddWord : Form
     {
+
         public FormAddWord()
         {
             InitializeComponent();
-            this.StartPosition = FormStartPosition.CenterScreen;
+            StartPosition = FormStartPosition.CenterScreen;
+            MaximizeBox = false;
+            fa_tb_eng.Multiline = false;
+            fa_tb_ru.Multiline = false;
+            fa_tb_fr.Multiline = false;
+            SetText();
+        }
+
+        private void SetText()
+        {
+            TextBox[] tb_array = { fa_tb_eng, fa_tb_ru, fa_tb_fr };
+            tb_array[Form1.SelectedInput].Text = Form1.TextBoxInput.Text;
         }
 
         private void fa_btn_add_Click(object sender, EventArgs e)
@@ -31,11 +43,13 @@ namespace translate.new_word
                 WithJson.TextToJson(fa_tb_eng.Text, Form1.FIlePathEng);
                 WithJson.TextToJson(fa_tb_ru.Text, Form1.FIlePathRu);
                 WithJson.TextToJson(fa_tb_fr.Text, Form1.FIlePathFr);
+                MessageBox.Show("Данные успешно сохранены в файл.");
             }
             else
             {
                 MessageBox.Show("Значения введены некорректно. Пожалуйста, проверьте правильность ввода и попробуйте еще раз");
             }
+            Close();
         }
 
         
