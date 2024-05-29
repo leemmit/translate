@@ -18,6 +18,10 @@ namespace translate.new_word
 {
     public partial class FormAddWord : Form
     {
+        private static ComboBox _fa_cb_from;
+        private static ComboBox _fa_cb_to;
+        public static ComboBox Fa_Cb_From { get => _fa_cb_from; set => _fa_cb_from = value; }
+        public static ComboBox Fa_Cb_To { get => _fa_cb_to; set => _fa_cb_to = value; }
 
         public FormAddWord()
         {
@@ -26,28 +30,22 @@ namespace translate.new_word
             MaximizeBox = false;
             fa_tb_from.Multiline = false;
             fa_tb_to.Multiline = false;
+            RefreshFaCb();
             SetText();
-        }
-
-        private void Init()
-        {
-            /*fa_cb_from.Items.Add(GetWbNames());
-            fa_cb_to.Items.Add(GetWbNames(Form1.Wordbooks));*/
-        }
-        static string[] GetWbNames(Wordbook[] wordbooks)
-        {
-            string[] wbNames = { };
-            foreach (Wordbook el in wordbooks)
-            {
-                wbNames.Append(el.Name);
-            }
-            return wbNames;
         }
 
         private void SetText()
         {
-            TextBox[] tb_array = { fa_tb_from, fa_tb_to};
-            tb_array[Form1.SelectedInput].Text = Form1.TextBoxInput.Text;
+            fa_cb_from.SelectedIndex = Form1.SelectedInput;
+            fa_tb_from.Text = Form1.TextBoxInput.Text;
+        }
+
+        private static void RefreshFaCb()
+        {
+            Fa_Cb_From.Items.Clear();
+            Fa_Cb_To.Items.Clear();
+            Fa_Cb_From.Items.AddRange(Form1.FileNames);
+            Fa_Cb_To.Items.AddRange(Form1.FileNames);
         }
 
         private void fa_btn_add_Click(object sender, EventArgs e)
@@ -55,8 +53,8 @@ namespace translate.new_word
             //foreach (el in tb_array) 
             if (fa_tb_from.Text != "" && fa_tb_to.Text != "")
             {
-                /*WithJson.TextToJson(fa_tb_from.Text, Form1.FIlePathEng);
-                WithJson.TextToJson(fa_tb_to.Text, Form1.FIlePathRu);*/
+                WithJson.TextToJson(fa_tb_from.Text.ToLower(), Form1.FilePaths.ElementAt(fa_cb_from.SelectedIndex).ToString());
+                WithJson.TextToJson(fa_tb_to.Text.ToLower(), Form1.FilePaths.ElementAt(fa_cb_to.SelectedIndex).ToString());
                 MessageBox.Show("Данные успешно сохранены в файл.");
             }
             else
@@ -65,6 +63,7 @@ namespace translate.new_word
             }
             Close();
         }
+
 
         
     }

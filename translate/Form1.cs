@@ -33,9 +33,12 @@ namespace translate
         //private static Wordbook[] wordbooks = { };
         //public static Wordbook[] Wordbooks { get => wordbooks; set => wordbooks = value; }
 
-        private static string[] filePaths = { };
-        private string[] fileNames = { };
-        public static string[] FilePaths { get => filePaths; set => filePaths = value; }
+        private static object[] filePaths;
+        private static object[] fileNames;
+        private static string newPath;
+        public static string NewPath { get => newPath; set => newPath = value; }
+        public static object[] FilePaths { get => filePaths; set => filePaths = value; }
+        public static object[] FileNames { get => fileNames; set => fileNames = value; }
 
 /*        static string filePathEng = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "JSON", "eng_words.json");
         static string filePathRu = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "JSON", "russian_words.json");
@@ -53,14 +56,13 @@ namespace translate
             
             InitializeComponent();
             InitVariables();
-            //InitWordbooks();
             Show();
             Activate();
         }
 
         private void btnTranslate_Click(object sender, EventArgs e)
         {
-            TextBoxOutput.Text = Translation.Translate(tb_input.Text, cb_input.SelectedIndex, cb_output.SelectedIndex);
+            TextBoxOutput.Text = Translation.Translate(tb_input.Text, Math.Abs(cb_input.SelectedIndex), cb_output.SelectedIndex);
         }
 
         private void btn_addWord_Click(object sender, EventArgs e)
@@ -71,11 +73,34 @@ namespace translate
 
         private void btn_addList_Click(object sender, EventArgs e)
         {
-            WithJson.ChooseFile();
+            MessageBox.Show("Для корректной работы программы рекомендуется добавлять словари в одну папку, называя их <язык>.json");
+            NewPath = WithJson.ChooseFile();
+            RefreshDictionaries(NewPath);
+        }
+
+        private void RefreshDictionaries(string new_path)
+        {
+            List<object> list = new List<object>();
+            foreach (string path in FilePaths)
+            {
+                list.Add(path);
+            }
+            list.Add(new_path);
+            FilePaths = list.ToArray();
+
+            FileNames = GetFileNames(FilePaths);
+            cb_input.Items.Clear();
+            cb_output.Items.Clear();
+            cb_input.Items.AddRange(FileNames);
+            cb_output.Items.AddRange(FileNames);
         }
 
         private void InitVariables()
         {
+            FileNames = GetFileNames(FilePaths);
+            cb_input.Items.AddRange(FileNames);
+            cb_output.Items.AddRange(FileNames);
+
             Wordbook[] wordbooks = { };
             MaximizeBox = false;
 
@@ -113,19 +138,39 @@ namespace translate
             return files;
         }
 
-/*        private void InitWordbooks()
+        /*        public List<string> GetFileNames(string[] filepaths)
+                {
+                    List<string> list = new List<string>();
+                    foreach (string path in filepaths)
+                    {
+                        list.Add(Path.GetFileName(path));
+                    }
+                    return list;
+                }*/
+
+        public object[] GetFileNames(object[] filepaths)
         {
-            string folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "JSON");
-
-            string[] files = Directory.GetFiles(folderPath);
-
-            foreach (string file in files)
+            List<object> list = new List<object>();
+            foreach (string path in filepaths)
             {
-                filePaths.Append(file);
+                list.Add(Path.GetFileNameWithoutExtension(path));
             }
+            return list.ToArray();
+        }
 
-            //WithJson.TextToJson( , Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "dictionaries.json"));
-        }*/
+        /*        private void InitWordbooks()
+                {
+                    string folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "JSON");
+
+                    string[] files = Directory.GetFiles(folderPath);
+
+                    foreach (string file in files)
+                    {
+                        filePaths.Append(file);
+                    }
+
+                    //WithJson.TextToJson( , Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "dictionaries.json"));
+                }*/
 
         public bool CheckPaths(string[] paths)
         {
@@ -146,12 +191,18 @@ namespace translate
 
         private void cb_input_SelectedIndexChanged(object sender, EventArgs e)
         {
-            tb_input.Text = Translation.Translate(tb_output.Text, cb_output.SelectedIndex, cb_input.SelectedIndex);
+            if (tb_input.Text != "")
+            {
+                tb_input.Text = Translation.Translate(tb_output.Text, cb_output.SelectedIndex, cb_input.SelectedIndex);
+            }
         }
 
         private void cb_output_SelectedIndexChanged(object sender, EventArgs e)
         {
-            tb_output.Text = Translation.Translate(tb_input.Text, cb_input.SelectedIndex, cb_output.SelectedIndex);
+            if (tb_output.Text != "")
+            {
+                tb_output.Text = Translation.Translate(tb_input.Text, cb_input.SelectedIndex, cb_output.SelectedIndex);
+            }
         }
     }
 }

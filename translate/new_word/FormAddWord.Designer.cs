@@ -43,19 +43,21 @@ namespace translate.new_word
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 16F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(12, 21);
+            this.label1.Location = new System.Drawing.Point(8, 14);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(380, 45);
+            this.label1.Size = new System.Drawing.Size(262, 30);
             this.label1.TabIndex = 0;
             this.label1.Text = "Добавить новое слово";
             // 
             // fa_tb_from
             // 
             this.fa_tb_from.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.fa_tb_from.Location = new System.Drawing.Point(60, 175);
+            this.fa_tb_from.Location = new System.Drawing.Point(40, 114);
+            this.fa_tb_from.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.fa_tb_from.Multiline = true;
             this.fa_tb_from.Name = "fa_tb_from";
-            this.fa_tb_from.Size = new System.Drawing.Size(285, 40);
+            this.fa_tb_from.Size = new System.Drawing.Size(191, 27);
             this.fa_tb_from.TabIndex = 1;
             // 
             // label2
@@ -63,18 +65,20 @@ namespace translate.new_word
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial Narrow", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label2.Location = new System.Drawing.Point(12, 77);
+            this.label2.Location = new System.Drawing.Point(8, 50);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(457, 29);
+            this.label2.Size = new System.Drawing.Size(304, 20);
             this.label2.TabIndex = 2;
             this.label2.Text = "Введите слово в соответствующих полях";
             // 
             // fa_btn_add
             // 
             this.fa_btn_add.Font = new System.Drawing.Font("Segoe UI", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.fa_btn_add.Location = new System.Drawing.Point(316, 242);
+            this.fa_btn_add.Location = new System.Drawing.Point(211, 157);
+            this.fa_btn_add.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.fa_btn_add.Name = "fa_btn_add";
-            this.fa_btn_add.Size = new System.Drawing.Size(135, 51);
+            this.fa_btn_add.Size = new System.Drawing.Size(90, 33);
             this.fa_btn_add.TabIndex = 6;
             this.fa_btn_add.Text = "Добавить";
             this.fa_btn_add.UseVisualStyleBackColor = true;
@@ -83,43 +87,38 @@ namespace translate.new_word
             // fa_tb_to
             // 
             this.fa_tb_to.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.fa_tb_to.Location = new System.Drawing.Point(422, 175);
+            this.fa_tb_to.Location = new System.Drawing.Point(281, 114);
+            this.fa_tb_to.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.fa_tb_to.Multiline = true;
             this.fa_tb_to.Name = "fa_tb_to";
-            this.fa_tb_to.Size = new System.Drawing.Size(285, 40);
+            this.fa_tb_to.Size = new System.Drawing.Size(191, 27);
             this.fa_tb_to.TabIndex = 7;
             // 
             // fa_cb_from
             // 
             this.fa_cb_from.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.fa_cb_from.FormattingEnabled = true;
-            this.fa_cb_from.Items.AddRange(new object[] {
-            "Английский",
-            "Русский",
-            "Французский"});
-            this.fa_cb_from.Location = new System.Drawing.Point(60, 122);
+            this.fa_cb_from.Location = new System.Drawing.Point(40, 79);
+            this.fa_cb_from.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.fa_cb_from.Name = "fa_cb_from";
-            this.fa_cb_from.Size = new System.Drawing.Size(285, 37);
+            this.fa_cb_from.Size = new System.Drawing.Size(191, 28);
             this.fa_cb_from.TabIndex = 8;
             // 
             // fa_cb_to
             // 
             this.fa_cb_to.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.fa_cb_to.FormattingEnabled = true;
-            this.fa_cb_to.Items.AddRange(new object[] {
-            "Английский",
-            "Русский",
-            "Французский"});
-            this.fa_cb_to.Location = new System.Drawing.Point(422, 122);
+            this.fa_cb_to.Location = new System.Drawing.Point(281, 79);
+            this.fa_cb_to.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.fa_cb_to.Name = "fa_cb_to";
-            this.fa_cb_to.Size = new System.Drawing.Size(285, 37);
+            this.fa_cb_to.Size = new System.Drawing.Size(191, 28);
             this.fa_cb_to.TabIndex = 9;
             // 
             // FormAddWord
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(758, 309);
+            this.ClientSize = new System.Drawing.Size(505, 201);
             this.Controls.Add(this.fa_cb_to);
             this.Controls.Add(this.fa_cb_from);
             this.Controls.Add(this.fa_tb_to);
@@ -127,6 +126,7 @@ namespace translate.new_word
             this.Controls.Add(this.label2);
             this.Controls.Add(this.fa_tb_from);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormAddWord";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FormAddWord";

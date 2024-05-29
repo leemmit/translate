@@ -15,10 +15,10 @@ namespace translate.Classes
     {
         public static string Translate(string text, int inputLangIndex = 1, int outputLangIndex = 0)
         {
-            List<Dictionary<int, string>> languages = new List<Dictionary<int, string>>();
+            List<Dictionary<string, string>> languages = new List<Dictionary<string, string>>();
             foreach (string path in FilePaths)
             {
-                Dictionary<int, string> file = WithJson.ReadJsonFile(path);
+                Dictionary<string, string> file = WithJson.ReadJsonFile(path);
                 languages.Add(file);
             }
             /*Dictionary<int, string> engWords = WithJson.ReadJsonFile(FIlePathEng);
@@ -26,7 +26,7 @@ namespace translate.Classes
             Dictionary<int, string> frWords = WithJson.ReadJsonFile(FIlePathFr);
             Dictionary<int, string>[] languages = { engWords, ruWords, frWords };*/
 
-            bool ifFilesExists(string[] filepaths)
+            bool ifFilesExists(object[] filepaths)
             {
                 bool check = true;
                 foreach (string el in filepaths)
@@ -37,7 +37,7 @@ namespace translate.Classes
                 return check;
             }
 
-            int index = 0;
+            string index = "";
 
             if (ifFilesExists(FilePaths))
             {
@@ -53,7 +53,16 @@ namespace translate.Classes
                                 index = el.Key;
                             }
                         }
-                        return languages.ElementAt(outputLangIndex)[index];
+                        if (index == "")
+                        {
+                            FormErrorWord formErr = new FormErrorWord();
+                            formErr.Show();
+                            return text = "";
+                        }
+                        else
+                        {
+                            return languages.ElementAt(outputLangIndex)[index];
+                        }
                         //return languages[outputLangIndex][index];
                     }
                     else

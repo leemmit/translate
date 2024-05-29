@@ -13,7 +13,7 @@ namespace translate.Classes
 {
     class WithJson
     {
-        public static Dictionary<int, string> ReadJsonFile(string filePath)
+        public static Dictionary<string, string> ReadJsonFile(string filePath)
         {
             // Проверяем существование файла
             if (!File.Exists(filePath))
@@ -25,7 +25,7 @@ namespace translate.Classes
             string json = File.ReadAllText(filePath, Encoding.UTF8);
 
             // Десериализация JSON в словарь
-            Dictionary<int, string> jsonObject = JsonConvert.DeserializeObject<Dictionary<int, string>>(json);
+            Dictionary<string, string> jsonObject = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
 
             return jsonObject;
         }
@@ -40,7 +40,17 @@ namespace translate.Classes
 
                 int maxKey = data.Keys.Select(k => int.Parse(k)).Max();
 
-                string newKey = (maxKey + 1).ToString();
+                string newKey = "";
+                try
+                {
+                    newKey = Translation.Translate(text, Form1.ComboBoxInput.SelectedIndex, Array.IndexOf(Form1.FileNames, "Английский"));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при обнаружении файла Английского языка: {ex.Message}\nПожалуйста проверьте что ваш файл существует и имеет название \"Английский\"");
+                    return;
+                }
+
                 data.Add(newKey, text);
 
                 string updatedJson = JsonConvert.SerializeObject(data, Formatting.Indented);
