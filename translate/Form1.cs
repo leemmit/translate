@@ -30,6 +30,12 @@ namespace translate
         public static TextBox TextBoxInput { get => _textBoxInput; set => _textBoxInput = value; }
         public static TextBox TextBoxOutput { get => _textBoxOutput; set => _textBoxOutput = value; }
 
+        //private static Wordbook[] wordbooks = { };
+        //public static Wordbook[] Wordbooks { get => wordbooks; set => wordbooks = value; }
+
+        private static string[] filePaths = { };
+        private string[] fileNames = { };
+        public static string[] GetFilePaths { get => filePaths; set => filePaths = value; }
 
         static string filePathEng = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "JSON", "eng_words.json");
         static string filePathRu = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "JSON", "russian_words.json");
@@ -44,8 +50,12 @@ namespace translate
 
         public Form1()
         {
+            
             InitializeComponent();
             InitVariables();
+            //InitWordbooks();
+            Show();
+            Activate();
         }
 
         private void btnTranslate_Click(object sender, EventArgs e)
@@ -59,8 +69,14 @@ namespace translate
             formAdd.Show();
         }
 
-        void InitVariables()
+        private void btn_addList_Click(object sender, EventArgs e)
         {
+            WithJson.ChooseFile();
+        }
+
+        private void InitVariables()
+        {
+            Wordbook[] wordbooks = { };
             MaximizeBox = false;
 
             cb_input.SelectedIndex = 1;
@@ -76,6 +92,57 @@ namespace translate
 
             SelectedInput = cb_input.SelectedIndex;
         }
+
+        public static string[] InitDictionaries()
+        {
+            MessageBox.Show("Выберите путь к папке словарей");
+            string[] files = { };
+            FolderBrowserDialog choooseFolder = new FolderBrowserDialog();
+            choooseFolder.RootFolder = Environment.SpecialFolder.MyComputer;
+            choooseFolder.SelectedPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory);
+
+            DialogResult result = choooseFolder.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                string selectedFolder = choooseFolder.SelectedPath;
+                //string folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "JSON");
+
+                files = Directory.GetFiles(selectedFolder);
+            }
+            return files;
+        }
+
+/*        private void InitWordbooks()
+        {
+            string folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "JSON");
+
+            string[] files = Directory.GetFiles(folderPath);
+
+            foreach (string file in files)
+            {
+                filePaths.Append(file);
+            }
+
+            //WithJson.TextToJson( , Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "dictionaries.json"));
+        }*/
+
+        public bool CheckPaths(string[] paths)
+        {
+            bool check = true;
+            foreach (string el in paths)
+            {
+                check = check && (el != "");
+            }
+            return check;
+        }
+
+/*        private void InitWordbooks(Wordbook[] wordbooks)
+        {
+            wordbooks.Append(new Wordbook("English", FIlePathEng));
+            wordbooks.Append(new Wordbook("Русский", FIlePathRu));
+            wordbooks.Append(new Wordbook("French", FIlePathFr));
+        }*/
 
         private void cb_input_SelectedIndexChanged(object sender, EventArgs e)
         {

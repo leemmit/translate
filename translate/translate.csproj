@@ -52,6 +52,7 @@
     <Compile Include="Classes\Translation.cs" />
     <Compile Include="Classes\WithJson.cs" />
     <Compile Include="Classes\Notification.cs" />
+    <Compile Include="Classes\Wordbook.cs" />
     <Compile Include="error_word\FormErrorWord.cs">
       <SubType>Form</SubType>
     </Compile>

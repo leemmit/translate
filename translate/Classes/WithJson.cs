@@ -52,5 +52,20 @@ namespace translate.Classes
                 MessageBox.Show($"Ошибка при сохранении данных в файл JSON: {ex.Message}");
             }
         }
+
+        public static string ChooseFile()
+        {
+            string selectedFilePath = "";
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Title = "Выберите файл словаря";
+                openFileDialog.Filter = "JSON files (*.json)|*.json";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    selectedFilePath = openFileDialog.FileName;
+                }
+            }
+            return selectedFilePath;
+        }
     }
 }

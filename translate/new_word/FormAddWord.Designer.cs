@@ -30,14 +30,12 @@ namespace translate.new_word
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.fa_tb_eng = new System.Windows.Forms.TextBox();
+            this.fa_tb_from = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.fa_btn_add = new System.Windows.Forms.Button();
-            this.fa_tb_ru = new System.Windows.Forms.TextBox();
-            this.fa_tb_fr = new System.Windows.Forms.TextBox();
+            this.fa_tb_to = new System.Windows.Forms.TextBox();
+            this.fa_cb_from = new System.Windows.Forms.ComboBox();
+            this.fa_cb_to = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -51,14 +49,14 @@ namespace translate.new_word
             this.label1.TabIndex = 0;
             this.label1.Text = "Добавить новое слово";
             // 
-            // fa_tb_eng
+            // fa_tb_from
             // 
-            this.fa_tb_eng.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.fa_tb_eng.Location = new System.Drawing.Point(129, 132);
-            this.fa_tb_eng.Multiline = true;
-            this.fa_tb_eng.Name = "fa_tb_eng";
-            this.fa_tb_eng.Size = new System.Drawing.Size(485, 40);
-            this.fa_tb_eng.TabIndex = 1;
+            this.fa_tb_from.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.fa_tb_from.Location = new System.Drawing.Point(60, 175);
+            this.fa_tb_from.Multiline = true;
+            this.fa_tb_from.Name = "fa_tb_from";
+            this.fa_tb_from.Size = new System.Drawing.Size(285, 40);
+            this.fa_tb_from.TabIndex = 1;
             // 
             // label2
             // 
@@ -71,43 +69,10 @@ namespace translate.new_word
             this.label2.TabIndex = 2;
             this.label2.Text = "Введите слово в соответствующих полях";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label3.Location = new System.Drawing.Point(14, 138);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(96, 34);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "English";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label4.Location = new System.Drawing.Point(13, 184);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(107, 34);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Русский";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label5.Location = new System.Drawing.Point(14, 230);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(110, 34);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Français";
-            // 
             // fa_btn_add
             // 
             this.fa_btn_add.Font = new System.Drawing.Font("Segoe UI", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.fa_btn_add.Location = new System.Drawing.Point(304, 280);
+            this.fa_btn_add.Location = new System.Drawing.Point(316, 242);
             this.fa_btn_add.Name = "fa_btn_add";
             this.fa_btn_add.Size = new System.Drawing.Size(135, 51);
             this.fa_btn_add.TabIndex = 6;
@@ -115,37 +80,52 @@ namespace translate.new_word
             this.fa_btn_add.UseVisualStyleBackColor = true;
             this.fa_btn_add.Click += new System.EventHandler(this.fa_btn_add_Click);
             // 
-            // fa_tb_ru
+            // fa_tb_to
             // 
-            this.fa_tb_ru.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.fa_tb_ru.Location = new System.Drawing.Point(129, 178);
-            this.fa_tb_ru.Multiline = true;
-            this.fa_tb_ru.Name = "fa_tb_ru";
-            this.fa_tb_ru.Size = new System.Drawing.Size(485, 40);
-            this.fa_tb_ru.TabIndex = 7;
+            this.fa_tb_to.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.fa_tb_to.Location = new System.Drawing.Point(422, 175);
+            this.fa_tb_to.Multiline = true;
+            this.fa_tb_to.Name = "fa_tb_to";
+            this.fa_tb_to.Size = new System.Drawing.Size(285, 40);
+            this.fa_tb_to.TabIndex = 7;
             // 
-            // fa_tb_fr
+            // fa_cb_from
             // 
-            this.fa_tb_fr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.fa_tb_fr.Location = new System.Drawing.Point(129, 224);
-            this.fa_tb_fr.Multiline = true;
-            this.fa_tb_fr.Name = "fa_tb_fr";
-            this.fa_tb_fr.Size = new System.Drawing.Size(485, 40);
-            this.fa_tb_fr.TabIndex = 8;
+            this.fa_cb_from.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.fa_cb_from.FormattingEnabled = true;
+            this.fa_cb_from.Items.AddRange(new object[] {
+            "Английский",
+            "Русский",
+            "Французский"});
+            this.fa_cb_from.Location = new System.Drawing.Point(60, 122);
+            this.fa_cb_from.Name = "fa_cb_from";
+            this.fa_cb_from.Size = new System.Drawing.Size(285, 37);
+            this.fa_cb_from.TabIndex = 8;
+            // 
+            // fa_cb_to
+            // 
+            this.fa_cb_to.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.fa_cb_to.FormattingEnabled = true;
+            this.fa_cb_to.Items.AddRange(new object[] {
+            "Английский",
+            "Русский",
+            "Французский"});
+            this.fa_cb_to.Location = new System.Drawing.Point(422, 122);
+            this.fa_cb_to.Name = "fa_cb_to";
+            this.fa_cb_to.Size = new System.Drawing.Size(285, 37);
+            this.fa_cb_to.TabIndex = 9;
             // 
             // FormAddWord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(638, 346);
-            this.Controls.Add(this.fa_tb_fr);
-            this.Controls.Add(this.fa_tb_ru);
+            this.ClientSize = new System.Drawing.Size(758, 309);
+            this.Controls.Add(this.fa_cb_to);
+            this.Controls.Add(this.fa_cb_from);
+            this.Controls.Add(this.fa_tb_to);
             this.Controls.Add(this.fa_btn_add);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.fa_tb_eng);
+            this.Controls.Add(this.fa_tb_from);
             this.Controls.Add(this.label1);
             this.Name = "FormAddWord";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -158,13 +138,11 @@ namespace translate.new_word
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox fa_tb_eng;
+        private System.Windows.Forms.TextBox fa_tb_from;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button fa_btn_add;
-        private System.Windows.Forms.TextBox fa_tb_ru;
-        private System.Windows.Forms.TextBox fa_tb_fr;
+        private System.Windows.Forms.TextBox fa_tb_to;
+        private System.Windows.Forms.ComboBox fa_cb_from;
+        private System.Windows.Forms.ComboBox fa_cb_to;
     }
 }

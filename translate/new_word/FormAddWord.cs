@@ -24,25 +24,39 @@ namespace translate.new_word
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
             MaximizeBox = false;
-            fa_tb_eng.Multiline = false;
-            fa_tb_ru.Multiline = false;
-            fa_tb_fr.Multiline = false;
+            fa_tb_from.Multiline = false;
+            fa_tb_to.Multiline = false;
             SetText();
+        }
+
+        private void Init()
+        {
+            /*fa_cb_from.Items.Add(GetWbNames());
+            fa_cb_to.Items.Add(GetWbNames(Form1.Wordbooks));*/
+        }
+        static string[] GetWbNames(Wordbook[] wordbooks)
+        {
+            string[] wbNames = { };
+            foreach (Wordbook el in wordbooks)
+            {
+                wbNames.Append(el.Name);
+            }
+            return wbNames;
         }
 
         private void SetText()
         {
-            TextBox[] tb_array = { fa_tb_eng, fa_tb_ru, fa_tb_fr };
+            TextBox[] tb_array = { fa_tb_from, fa_tb_to};
             tb_array[Form1.SelectedInput].Text = Form1.TextBoxInput.Text;
         }
 
         private void fa_btn_add_Click(object sender, EventArgs e)
         {
-            if (fa_tb_eng.Text != "" && fa_tb_ru.Text != "" && fa_tb_fr.Text != "")
+            //foreach (el in tb_array) 
+            if (fa_tb_from.Text != "" && fa_tb_to.Text != "")
             {
-                WithJson.TextToJson(fa_tb_eng.Text, Form1.FIlePathEng);
-                WithJson.TextToJson(fa_tb_ru.Text, Form1.FIlePathRu);
-                WithJson.TextToJson(fa_tb_fr.Text, Form1.FIlePathFr);
+                WithJson.TextToJson(fa_tb_from.Text, Form1.FIlePathEng);
+                WithJson.TextToJson(fa_tb_to.Text, Form1.FIlePathRu);
                 MessageBox.Show("Данные успешно сохранены в файл.");
             }
             else

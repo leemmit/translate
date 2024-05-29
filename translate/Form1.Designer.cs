@@ -38,6 +38,8 @@ namespace translate
             this.btn_translate = new System.Windows.Forms.Button();
             this.btn_addWord = new System.Windows.Forms.Button();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.btn_addList = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // tb_input
@@ -111,11 +113,11 @@ namespace translate
             // btn_addWord
             // 
             this.btn_addWord.Font = new System.Drawing.Font("Calibri", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.btn_addWord.Location = new System.Drawing.Point(666, 448);
+            this.btn_addWord.Location = new System.Drawing.Point(584, 448);
             this.btn_addWord.Name = "btn_addWord";
-            this.btn_addWord.Size = new System.Drawing.Size(135, 78);
+            this.btn_addWord.Size = new System.Drawing.Size(217, 62);
             this.btn_addWord.TabIndex = 7;
-            this.btn_addWord.Text = "Добавить \r\nслово";
+            this.btn_addWord.Text = "Добавить слово";
             this.btn_addWord.UseVisualStyleBackColor = true;
             this.btn_addWord.Click += new System.EventHandler(this.btn_addWord_Click);
             // 
@@ -124,11 +126,27 @@ namespace translate
             this.notifyIcon.Text = "notifyIcon1";
             this.notifyIcon.Visible = true;
             // 
+            // btn_addList
+            // 
+            this.btn_addList.Font = new System.Drawing.Font("Calibri", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.btn_addList.Location = new System.Drawing.Point(71, 448);
+            this.btn_addList.Name = "btn_addList";
+            this.btn_addList.Size = new System.Drawing.Size(232, 62);
+            this.btn_addList.TabIndex = 8;
+            this.btn_addList.Text = "Добавить словарь";
+            this.btn_addList.UseVisualStyleBackColor = true;
+            this.btn_addList.Click += new System.EventHandler(this.btn_addList_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(880, 538);
+            this.ClientSize = new System.Drawing.Size(880, 533);
+            this.Controls.Add(this.btn_addList);
             this.Controls.Add(this.btn_addWord);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_translate);
@@ -154,6 +172,8 @@ namespace translate
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_addWord;
         private System.Windows.Forms.NotifyIcon notifyIcon;
+        private System.Windows.Forms.Button btn_addList;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 
