@@ -15,27 +15,46 @@ namespace translate.Classes
     {
         public static string Translate(string text, int inputLangIndex = 1, int outputLangIndex = 0)
         {
-            Dictionary<int, string> engWords = WithJson.ReadJsonFile(FIlePathEng);
+            List<Dictionary<int, string>> languages = new List<Dictionary<int, string>>();
+            foreach (string path in FilePaths)
+            {
+                Dictionary<int, string> file = WithJson.ReadJsonFile(path);
+                languages.Add(file);
+            }
+            /*Dictionary<int, string> engWords = WithJson.ReadJsonFile(FIlePathEng);
             Dictionary<int, string> ruWords = WithJson.ReadJsonFile(FIlePathRu);
             Dictionary<int, string> frWords = WithJson.ReadJsonFile(FIlePathFr);
-            Dictionary<int, string>[] languages = { engWords, ruWords, frWords };
+            Dictionary<int, string>[] languages = { engWords, ruWords, frWords };*/
+
+            bool ifFilesExists(string[] filepaths)
+            {
+                bool check = true;
+                foreach (string el in filepaths)
+                {
+                    check = check && File.Exists(el);
+                }
+
+                return check;
+            }
 
             int index = 0;
 
-            if (File.Exists(FIlePathRu) && File.Exists(FIlePathEng) && File.Exists(FIlePathFr))
+            if (ifFilesExists(FilePaths))
             {
                 try
                 {
-                    if (languages[inputLangIndex].ContainsValue(text.ToLower()))
+                    if (languages.ElementAt(inputLangIndex).ContainsValue(text.ToLower()))
+                    //if (languages[inputLangIndex].ContainsValue(text.ToLower()))
                     {
-                        foreach (var el in languages[inputLangIndex])
+                        foreach (var el in languages.ElementAt(inputLangIndex))
                         {
                             if (el.Value == text.ToLower())
                             {
                                 index = el.Key;
                             }
                         }
-                        return languages[outputLangIndex][index];
+                        return languages.ElementAt(outputLangIndex)[index];
+                        //return languages[outputLangIndex][index];
                     }
                     else
                     {

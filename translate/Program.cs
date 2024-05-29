@@ -16,7 +16,7 @@ namespace translate
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Form1.GetFilePaths = Form1.InitDictionaries();
+            Form1.FilePaths = Form1.InitDictionaries();
             Application.Run(new Form1());
             
         }

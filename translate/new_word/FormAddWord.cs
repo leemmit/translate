@@ -55,8 +55,8 @@ namespace translate.new_word
             //foreach (el in tb_array) 
             if (fa_tb_from.Text != "" && fa_tb_to.Text != "")
             {
-                WithJson.TextToJson(fa_tb_from.Text, Form1.FIlePathEng);
-                WithJson.TextToJson(fa_tb_to.Text, Form1.FIlePathRu);
+                /*WithJson.TextToJson(fa_tb_from.Text, Form1.FIlePathEng);
+                WithJson.TextToJson(fa_tb_to.Text, Form1.FIlePathRu);*/
                 MessageBox.Show("Данные успешно сохранены в файл.");
             }
             else

@@ -35,14 +35,14 @@ namespace translate
 
         private static string[] filePaths = { };
         private string[] fileNames = { };
-        public static string[] GetFilePaths { get => filePaths; set => filePaths = value; }
+        public static string[] FilePaths { get => filePaths; set => filePaths = value; }
 
-        static string filePathEng = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "JSON", "eng_words.json");
+/*        static string filePathEng = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "JSON", "eng_words.json");
         static string filePathRu = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "JSON", "russian_words.json");
-        static string filePathFr = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "JSON", "fr_words.json");
-        public static string FIlePathEng { get => filePathEng; set => filePathEng = value; }
+        static string filePathFr = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "JSON", "fr_words.json");*/
+/*        public static string FIlePathEng { get => filePathEng; set => filePathEng = value; }
         public static string FIlePathRu { get => filePathRu; set => filePathRu = value; }
-        public static string FIlePathFr { get => filePathFr; set => filePathFr = value; }
+        public static string FIlePathFr { get => filePathFr; set => filePathFr = value; }*/
 
         private static int _selectedInput;
         public static int SelectedInput { get => _selectedInput; set => _selectedInput = value; }
