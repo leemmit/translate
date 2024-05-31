@@ -8,12 +8,14 @@ using System.Windows.Forms;
 
 using static translate.Form1;
 using translate.error_word;
+using translate.new_word;
+using translate.eng_word;
 
 namespace translate.Classes
 {
     class Translation
     {
-        public static string Translate(string text, int inputLangIndex = 1, int outputLangIndex = 0)
+        public static string Translate(string text, int inputLangIndex = 1, int outputLangIndex = 0, bool addWord = false)
         {
             List<Dictionary<string, string>> languages = new List<Dictionary<string, string>>();
             foreach (string path in FilePaths)
@@ -43,17 +45,20 @@ namespace translate.Classes
             {
                 try
                 {
+                    //Если Ввод содержит значение text
                     if (languages.ElementAt(inputLangIndex).ContainsValue(text.ToLower()))
-                    //if (languages[inputLangIndex].ContainsValue(text.ToLower()))
                     {
+                        //Для каждого эл-та Ввода
                         foreach (var el in languages.ElementAt(inputLangIndex))
                         {
+                            //Если Значение == text
                             if (el.Value == text.ToLower())
                             {
                                 index = el.Key;
                             }
                         }
-                        if (index == "")
+                        //Если Ключ пустой || Вывод НЕ содержит Ключ
+                        if (index == "" || !languages.ElementAt(outputLangIndex).ContainsKey(index))
                         {
                             FormErrorWord formErr = new FormErrorWord();
                             formErr.Show();
@@ -64,6 +69,13 @@ namespace translate.Classes
                             return languages.ElementAt(outputLangIndex)[index];
                         }
                         //return languages[outputLangIndex][index];
+                    }
+                    else if (addWord)
+                    {
+                        FormEngWord formEngWord = new FormEngWord();
+                        formEngWord.ShowDialog();
+                        WithJson.TextToJson(formEngWord.Texts, FilePaths.ElementAt(Array.IndexOf(FileNames, "Английский")).ToString());
+                        return formEngWord.Texts;
                     }
                     else
                     {

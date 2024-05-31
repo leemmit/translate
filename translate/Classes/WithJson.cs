@@ -38,12 +38,29 @@ namespace translate.Classes
 
                 var data = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
 
-                int maxKey = data.Keys.Select(k => int.Parse(k)).Max();
+                //int maxKey = data.Keys.Select(k => int.Parse(k)).Max();
 
                 string newKey = "";
                 try
                 {
-                    newKey = Translation.Translate(text, Form1.ComboBoxInput.SelectedIndex, Array.IndexOf(Form1.FileNames, "Английский"));
+                    if (filePath.Contains("Английский"))
+                    {
+                        newKey = text;
+                    }
+                    else
+                    {
+                        List<Dictionary<string, string>> languages = new List<Dictionary<string, string>>();
+                        foreach (string path in Form1.FilePaths)
+                        {
+                            Dictionary<string, string> file = WithJson.ReadJsonFile(path);
+                            languages.Add(file);
+                        }
+                        if (languages[Array.IndexOf(Form1.FileNames, "Английский")].ContainsKey(text))
+                        {
+                            
+                        }
+                        //newKey = Translation.Translate(text, Form1.ComboBoxOutput.SelectedIndex, Array.IndexOf(Form1.FileNames, "Английский"));
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -51,11 +68,14 @@ namespace translate.Classes
                     return;
                 }
 
-                data.Add(newKey, text);
+                if (!data.ContainsKey(newKey))
+                {
+                    data.Add(newKey, text);
 
-                string updatedJson = JsonConvert.SerializeObject(data, Formatting.Indented);
+                    string updatedJson = JsonConvert.SerializeObject(data, Formatting.Indented);
 
-                File.WriteAllText(filePath, updatedJson, System.Text.Encoding.UTF8);
+                    File.WriteAllText(filePath, updatedJson, System.Text.Encoding.UTF8);
+                }
             }
             catch (Exception ex)
             {

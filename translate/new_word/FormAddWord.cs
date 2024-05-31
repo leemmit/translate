@@ -26,6 +26,7 @@ namespace translate.new_word
         public FormAddWord()
         {
             InitializeComponent();
+            InitVariables();
             StartPosition = FormStartPosition.CenterScreen;
             MaximizeBox = false;
             fa_tb_from.Multiline = false;
@@ -36,7 +37,8 @@ namespace translate.new_word
 
         private void SetText()
         {
-            fa_cb_from.SelectedIndex = Form1.SelectedInput;
+            fa_cb_from.SelectedIndex = Math.Abs(Form1.ComboBoxInput.SelectedIndex);
+            fa_cb_to.SelectedIndex = Form1.ComboBoxOutput.SelectedIndex;
             fa_tb_from.Text = Form1.TextBoxInput.Text;
         }
 
@@ -46,6 +48,12 @@ namespace translate.new_word
             Fa_Cb_To.Items.Clear();
             Fa_Cb_From.Items.AddRange(Form1.FileNames);
             Fa_Cb_To.Items.AddRange(Form1.FileNames);
+        }
+
+        private void InitVariables()
+        {
+            _fa_cb_from = fa_cb_from;
+            _fa_cb_to = fa_cb_to;
         }
 
         private void fa_btn_add_Click(object sender, EventArgs e)

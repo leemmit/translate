@@ -53,6 +53,12 @@
     <Compile Include="Classes\WithJson.cs" />
     <Compile Include="Classes\Notification.cs" />
     <Compile Include="Classes\Wordbook.cs" />
+    <Compile Include="eng_word\FormEngWord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="eng_word\FormEngWord.Designer.cs">
+      <DependentUpon>FormEngWord.cs</DependentUpon>
+    </Compile>
     <Compile Include="error_word\FormErrorWord.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +79,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="eng_word\FormEngWord.resx">
+      <DependentUpon>FormEngWord.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="error_word\FormErrorWord.resx">
       <DependentUpon>FormErrorWord.cs</DependentUpon>
     </EmbeddedResource>

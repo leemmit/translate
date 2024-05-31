@@ -48,7 +48,9 @@ namespace translate
         public static string FIlePathFr { get => filePathFr; set => filePathFr = value; }*/
 
         private static int _selectedInput;
+        private static int _selectedOutput;
         public static int SelectedInput { get => _selectedInput; set => _selectedInput = value; }
+        public static int SelectedOutput { get => _selectedOutput; set => _selectedOutput = value; }
 
 
         public Form1()
@@ -75,7 +77,12 @@ namespace translate
         {
             MessageBox.Show("Для корректной работы программы рекомендуется добавлять словари в одну папку, называя их <язык>.json");
             NewPath = WithJson.ChooseFile();
-            RefreshDictionaries(NewPath);
+            if (File.Exists(NewPath))
+            {
+                RefreshDictionaries(NewPath);
+                MessageBox.Show("Словарь успешно добавлен");
+            }
+            else MessageBox.Show("Ошибка при загрузке словаря");
         }
 
         private void RefreshDictionaries(string new_path)
@@ -93,6 +100,7 @@ namespace translate
             cb_output.Items.Clear();
             cb_input.Items.AddRange(FileNames);
             cb_output.Items.AddRange(FileNames);
+            cb_output.SelectedIndex = FileNames.Length - 1;
         }
 
         private void InitVariables()
@@ -115,7 +123,8 @@ namespace translate
             _textBoxInput = tb_input;
             _textBoxOutput = tb_output;
 
-            SelectedInput = cb_input.SelectedIndex;
+            _selectedInput = cb_input.SelectedIndex;
+            _selectedOutput = cb_output.SelectedIndex;
         }
 
         public static string[] InitDictionaries()
@@ -199,6 +208,7 @@ namespace translate
 
         private void cb_output_SelectedIndexChanged(object sender, EventArgs e)
         {
+            _comboBoxOutput.SelectedIndex = cb_output.SelectedIndex;
             if (tb_output.Text != "")
             {
                 tb_output.Text = Translation.Translate(tb_input.Text, cb_input.SelectedIndex, cb_output.SelectedIndex);
